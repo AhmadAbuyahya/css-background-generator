@@ -10,7 +10,6 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Controls: typeof import('./components/Controls.vue')['default']
-    copy: typeof import('./components/PreviewTwo.vue')['default']
     Preview: typeof import('./components/Preview.vue')['default']
     PreviewTwo: typeof import('./components/PreviewTwo.vue')['default']
     README: typeof import('./components/README.md')['default']
