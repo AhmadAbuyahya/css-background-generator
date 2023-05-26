@@ -8,8 +8,8 @@ const angleThree = ref(60)
 const angleFour = ref(60)
 const sizeX = ref(3)
 const sizeY = ref(3)
-const PosOne = ref(1.5)
-const PosTwo = ref(-0.5)
+const PosOne = ref(24)
+const PosTwo = ref(-8)
 
 function randomizeAllValues() {
   angleOne.value = Math.ceil(Math.random() * 360)
@@ -21,9 +21,19 @@ function randomizeAllValues() {
   PosTwo.value = Math.ceil(Math.random() * 20) - 10
 }
 function randomizeColors() {
-  bgColor.value = `#${Math.floor(Math.random() * 16777215).toString(16)}`
-  colorOne.value = `#${Math.floor(Math.random() * 16777215).toString(16)}`
-  colorTwo.value = `#${Math.floor(Math.random() * 16777215).toString(16)}`
+  // bgColor.value = `#${Math.floor(Math.random() * 16777215).toString(16)}`
+  // colorOne.value = `#${Math.floor(Math.random() * 16777215).toString(16)}`
+  // colorTwo.value = `#${Math.floor(Math.random() * 16777215).toString(16)}`
+  // random rgba values
+  bgColor.value = `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(
+    Math.random() * 255,
+  )}, ${Math.floor(Math.random() * 255)}, 0.5)`
+  colorOne.value = `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(
+    Math.random() * 255,
+  )}, ${Math.floor(Math.random() * 255)}, 0.5)`
+  colorTwo.value = `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(
+    Math.random() * 255,
+  )}, ${Math.floor(Math.random() * 255)}, 0.5)`
 }
 
 const style = computed(() => ({
@@ -36,7 +46,6 @@ const style = computed(() => ({
     conic-gradient(from ${angleTwo.value}deg at 50% 30%, ${colorTwo.value} ${angleThree.value}deg, transparent ${angleThree.value}deg)`,
   'background-size': `${sizeX.value}rem ${sizeY.value}rem`,
   'background-position': `0 0, ${PosOne.value}px ${PosTwo.value}px`,
-  'filter': 'opacity(40%)',
 }))
 
 const css = computed(() => {
@@ -53,14 +62,10 @@ function copyStyle() {
 
 <template>
   <div :style="style" class="h-screen w-screen">
-    <h1>Preview</h1>
+    <h1 class="bg-black">
+      Preview
+    </h1>
   </div>
-  <!-- <div class="h-[500px] w-[500px] bg-teal-700">
-    <pre>
-      {{
-        style }}
-    </pre>
-  </div> -->
   <div
     class="absolute bottom-0 right-0 top-0 max-w-[300px] flex flex-col transform gap-2 rounded bg-teal-700 p-3"
   >
