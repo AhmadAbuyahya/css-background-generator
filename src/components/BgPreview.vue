@@ -64,7 +64,7 @@ function copyStyle() {
   navigator.clipboard.writeText(css.value)
 }
 
-function randomizeValue(key) {
+function randomizeValue(key: string) {
   const value = props.variables[key]
   if (value.type === 'color' && typeof value.value === 'string') {
     const newValue = `#${Math.floor(Math.random() * 16777215).toString(16)}${value.value.slice(7)}`
@@ -102,7 +102,7 @@ function randomizeValue(key) {
         "
         :key="key"
       >
-        <button v-if="!value.nonRandomizable" @click="randomizeValue(key)">
+        <button v-if="!value.nonRandomizable" @click="randomizeValue(key as string)">
           <i>ada</i>
         </button>
         <input

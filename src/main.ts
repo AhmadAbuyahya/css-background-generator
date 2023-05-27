@@ -1,5 +1,6 @@
 import { ViteSSG } from 'vite-ssg'
 import { setupLayouts } from 'virtual:generated-layouts'
+import { inject } from '@vercel/analytics'
 
 // import Previewer from 'virtual:vue-component-preview'
 import App from './App.vue'
@@ -9,6 +10,8 @@ import generatedRoutes from '~pages'
 import '@unocss/reset/tailwind.css'
 import './styles/main.css'
 import 'uno.css'
+
+inject()
 
 const routes = setupLayouts(generatedRoutes)
 
