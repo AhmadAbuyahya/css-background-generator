@@ -8,6 +8,7 @@ interface Variable {
   min?: number
   max?: number
   step?: number
+  nonRandomizable?: boolean
 }
 
 export interface Variables {

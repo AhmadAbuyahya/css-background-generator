@@ -9,9 +9,10 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    BgPreview: typeof import('./components/BgPreview.vue')['default']
     Controls: typeof import('./components/Controls.vue')['default']
     Preview: typeof import('./components/Preview.vue')['default']
-    PreviewTwo: typeof import('./components/PreviewTwo.vue')['default']
+    PreviewTwo: typeof import('./components/BgPreview.vue')['default']
     README: typeof import('./components/README.md')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
