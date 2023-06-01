@@ -77,7 +77,7 @@ function copyStyle() {
 </script>
 
 <template>
-  <div class="relative">
+  <div class="relative snap-start">
     <div
       :style="{
         ...style,
@@ -135,5 +135,6 @@ input[type="color"] {
 }
 .button{
   @apply bg-teal-500 text-white rounded p-2;
+
 }
 </style>

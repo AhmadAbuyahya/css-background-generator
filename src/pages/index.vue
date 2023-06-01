@@ -8,10 +8,8 @@ defineOptions({
 </script>
 
 <template>
-  <div class="w-full flex flex-col items-center justify-center bg-teal-700">
-    <div v-for="(value, key) in templates" :key="key">
-      <BgPreview :template="value.template" :variables="value.variables" />
-    </div>
+  <div class="max-h-screen w-full snap-y snap-mandatory overflow-y-scroll bg-teal-700">
+    <BgPreview v-for="(value, key) in templates" :key="key" :template="value.template" :variables="value.variables" />
   </div>
 </template>
 
