@@ -221,50 +221,44 @@ export default {
     template: {
       'background-color': '#232221',
       'background-image': `radial-gradient(
-      circle at {firstArcStart}% {firstArcEnd}%,
+      circle at 100% 50%,
       transparent 1rem,
-      #fff 1rem,
-      #fff 1.5rem,
+      {colorThree} 1rem,
+      {colorThree} 1.5rem,
       transparent 1.5rem
     ),
     radial-gradient(
-      circle at {secondArcStart}% {secondArcEnd}%,
+      circle at 0% 50%,
       transparent 1rem,
-      #fff 1rem,
-      #fff 1.5rem,
+      {colorThree} 1rem,
+      {colorThree} 1.5rem,
       transparent 1.5rem
     ),
-    linear-gradient(-45deg, red, blue)`,
+    linear-gradient({degOne}deg, {colorOne}, {colorTwo})`,
       'background-size': '{sizeOne}rem {sizeTwo}rem, {sizeOne}rem {sizeTwo}rem, 100% 100%',
       'background-position': '0 0, 0 2.5rem',
     },
     variables: {
-      firstArcStart: {
-        value: 100,
-        type: 'range',
-        min: 1,
-        max: 100,
+      colorOne: {
+        value: '#ff0000',
+        type: 'color',
       },
-      firstArcEnd: {
-        value: 50,
-        type: 'range',
-        min: 1,
-        max: 100,
+      colorTwo: {
+        value: '#0000ff',
+        type: 'color',
       },
-      secondArcStart: {
-        value: 0,
-        type: 'range',
-        min: 1,
-        max: 100,
+      colorThree: {
+        value: '#ffffff',
+        type: 'color',
       },
-      secondArcEnd: {
-        value: 50,
+      degOne: {
+        value: -45,
         type: 'range',
-        min: 1,
-        max: 100,
+        min: 0,
+        max: 360,
       },
       sizeOne: {
-        value: 4,
+        value: 12,
         type: 'range',
         min: 1,
         max: 20,
@@ -275,6 +269,7 @@ export default {
         min: 1,
         max: 20,
       },
+
     },
   },
 }

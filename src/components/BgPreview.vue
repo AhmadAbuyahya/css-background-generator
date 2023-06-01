@@ -64,47 +64,47 @@ function copyStyle() {
   navigator.clipboard.writeText(css.value)
 }
 
-function randomizeValue(key: string) {
-  const value = props.variables[key]
-  if (value.type === 'color' && typeof value.value === 'string') {
-    const newValue = `#${Math.floor(Math.random() * 16777215).toString(16)}${value.value.slice(7)}`
-    variablesRef.value[key] = newValue
-  }
-  else if (!value.nonRandomizable && (value.type === 'range' || value.type === 'number')) {
-    variablesRef.value[key] = Math.floor(Math.random() * ((value.max ?? 0) - (value.min ?? 0)) + (value.min ?? 0))
-  }
-}
+// function randomizeValue(key: string) {
+//   const value = props.variables[key]
+//   if (value.type === 'color' && typeof value.value === 'string') {
+//     const newValue = `#${Math.floor(Math.random() * 16777215).toString(16)}${value.value.slice(7)}`
+//     variablesRef.value[key] = newValue
+//   }
+//   else if (!value.nonRandomizable && (value.type === 'range' || value.type === 'number')) {
+//     variablesRef.value[key] = Math.floor(Math.random() * ((value.max ?? 0) - (value.min ?? 0)) + (value.min ?? 0))
+//   }
+// }
 </script>
 
 <template>
-  <div
-    :style="{
-      ...style,
-    }"
-    class="asa relative h-screen w-screen"
-  >
+  <div class="relative">
     <div
-      class="absolute bottom-0 right-0 top-0 max-w-[300px] flex flex-col transform gap-2 rounded bg-teal-700 p-3"
+      :style="{
+        ...style,
+      }"
+      class="asa relative h-screen w-screen"
+    />
+    <div
+      class="absolute inset-0 m-auto h-fit max-w-[300px] flex flex-col transform gap-2 rounded bg-teal-700 p-3"
     >
-      <button @click="randomizeNumberValues">
-        randomize numbers
+      <button class="button" @click="randomizeNumberValues">
+        Randomize Pattern
       </button>
 
-      <button @click="randomizeColors">
-        randomize colors
-      </button>
-      <button @click="reset">
-        reset
-      </button>
+      <div class="flex gap-2">
+        <button class="button w-full" @click="randomizeColors">
+          Randomize Colors
+        </button>
+        <button class="button" @click="reset">
+          Reset
+        </button>
+      </div>
       <div
         v-for="
           (value, key) in props.variables
         "
         :key="key"
       >
-        <button v-if="!value.nonRandomizable" @click="randomizeValue(key as string)">
-          <i>ada</i>
-        </button>
         <input
           v-model="variablesRef[key]"
           :type="value.type"
@@ -115,11 +115,12 @@ function randomizeValue(key: string) {
       </div>
       <!-- <input v-model="brightness" type="range" max="100" min="0"> -->
       <button
+        class="button"
         @click="copyStyle"
       >
-        copy styles
+        Copy CSS
       </button>
-      <pre class="text-left" style="white-space: inherit;">{{ css }}</pre>
+      <!-- <pre class="text-left" style="white-space: inherit;">{{ css }}</pre> -->
     </div>
   </div>
 </template>
@@ -131,5 +132,8 @@ input {
 }
 input[type="color"] {
     padding: 0px;
+}
+.button{
+  @apply bg-teal-500 text-white rounded p-2;
 }
 </style>
