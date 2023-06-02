@@ -6,6 +6,9 @@ const props = defineProps<{
   variables: Variables
 }>()
 
+const brightness = ref(75)
+const blur = ref(0)
+
 const obj: { [x: string]: string | number } = {}
 
 Object.keys(props.variables).forEach((key) => {
@@ -17,7 +20,9 @@ const variablesRef = ref<{ [x: string]: string | number }>(obj)
 // make the template reactive
 const style = computed(() => {
   const template = props.template
-  const style: { [x: string]: string } = {}
+  const style: { [x: string]: string } = {
+    filter: `brightness(${brightness.value}%) blur(${blur.value}px)`,
+  }
   Object.entries(template).forEach(([key, value]) => {
     const regex = /{(\w+)}/g
     const matches = value.matchAll(regex)
@@ -38,7 +43,7 @@ function reset() {
 
 function randomizeNumberValues() {
   Object.keys(props.variables).forEach((key) => {
-    if (!props.variables[key].nonRandomizable && (props.variables[key].type === 'range' || props.variables[key].type === 'number'))
+    if ((props.variables[key].type === 'range' || props.variables[key].type === 'number'))
       variablesRef.value[key] = Math.floor(Math.random() * ((props.variables[key].max ?? 0) - (props.variables[key].min ?? 0)) + (props.variables[key].min ?? 0))
   })
 }
@@ -64,25 +69,38 @@ function copyStyle() {
   navigator.clipboard.writeText(css.value)
 }
 
-// function randomizeValue(key: string) {
-//   const value = props.variables[key]
-//   if (value.type === 'color' && typeof value.value === 'string') {
-//     const newValue = `#${Math.floor(Math.random() * 16777215).toString(16)}${value.value.slice(7)}`
-//     variablesRef.value[key] = newValue
-//   }
-//   else if (!value.nonRandomizable && (value.type === 'range' || value.type === 'number')) {
-//     variablesRef.value[key] = Math.floor(Math.random() * ((value.max ?? 0) - (value.min ?? 0)) + (value.min ?? 0))
-//   }
-// }
+const containerRef = ref<HTMLElement>()
+
+onMounted(() => {
+  containerRef.value?.addEventListener('mousedown', (e) => {
+    // captue five consecutive clicks
+    if (e.button === 0 && e.detail === 5) {
+      e.preventDefault()
+      e.stopPropagation()
+      partyTime()
+    }
+  })
+})
+
+function partyTime() {
+  const interval = setInterval(() => {
+    randomizeNumberValues()
+    randomizeColors()
+  }, 300)
+  setTimeout(() => {
+    clearInterval(interval)
+    reset()
+  }, 5000)
+}
 </script>
 
 <template>
-  <div class="relative snap-start">
+  <div ref="containerRef" class="relative snap-start">
     <div
       :style="{
         ...style,
       }"
-      class="asa relative h-screen w-screen"
+      class="relative h-screen w-screen"
     />
     <div
       class="absolute inset-0 m-auto h-fit max-w-[300px] flex flex-col transform gap-2 rounded bg-teal-700 p-3"
@@ -113,14 +131,30 @@ function copyStyle() {
           :step="value.step"
         >
       </div>
-      <!-- <input v-model="brightness" type="range" max="100" min="0"> -->
+      <div>
+        <input
+          v-model="brightness"
+          type="range"
+          :min="1"
+          :max="100"
+          :step="1"
+        >
+      </div>
+      <div>
+        <input
+          v-model="blur"
+          type="range"
+          :min="0"
+          :max="10"
+          :step="1"
+        >
+      </div>
       <button
         class="button"
         @click="copyStyle"
       >
         Copy CSS
       </button>
-      <!-- <pre class="text-left" style="white-space: inherit;">{{ css }}</pre> -->
     </div>
   </div>
 </template>
@@ -134,7 +168,10 @@ input[type="color"] {
     padding: 0px;
 }
 .button{
-  @apply bg-teal-500 text-white rounded p-2;
+  @apply bg-teal-500 text-white rounded p-2 transition-colors duration-200 ease-in-out;
 
+}
+.button:hover{
+  @apply bg-teal-600;
 }
 </style>

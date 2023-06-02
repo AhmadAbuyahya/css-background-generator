@@ -1,4 +1,6 @@
-export default {
+import type { Templates } from '~/types'
+
+const templates: Templates = {
   zigzag: {
     template: {
       'background-color': '{bgColor}',
@@ -12,7 +14,6 @@ export default {
         linear-gradient(135deg, transparent 75%, {colorOne} 75%)`,
       'background-size': '{sizeX}rem {sizeY}rem',
       'background-position': '{PosOne}rem 0, {PosOne}rem 0, 0 0, 0 0',
-      'filter': 'brightness({brightness}%)',
     },
     variables: {
       bgColor: {
@@ -41,13 +42,6 @@ export default {
         min: 0,
         max: 20,
       },
-      brightness: {
-        type: 'range',
-        value: 100,
-        min: 1,
-        max: 100,
-        nonRandomizable: true,
-      },
     },
   },
   plusses: {
@@ -58,7 +52,6 @@ export default {
         linear-gradient(90deg, {colorOne} 8px, transparent 8px)`,
       'background-size': '5rem 5rem',
       'background-position': '5.25rem 5.25rem, 2.5rem 2.5rem, 2.5rem 2.5rem',
-      'filter': 'brightness({brightness}%) blur({blur}px)',
     },
     variables: {
       bgColor: {
@@ -75,20 +68,6 @@ export default {
         min: 5,
         max: 40,
       },
-      brightness: {
-        type: 'range',
-        value: 90,
-        min: 1,
-        max: 100,
-        nonRandomizable: true,
-      },
-      blur: {
-        type: 'range',
-        value: 0,
-        min: 0,
-        max: 10,
-        nonRandomizable: true,
-      },
     },
   },
   triangles: {
@@ -102,7 +81,6 @@ export default {
         conic-gradient(from {angleTwo}deg at 50% 30%, {colorTwo} {angleThree}deg, transparent {angleThree}deg)`,
       'background-size': '{sizeX}rem {sizeY}rem',
       'background-position': '0 0, {posOne}px {posTwo}px',
-      'filter': 'brightness({brightness}%)',
     },
     variables: {
       bgColor: {
@@ -165,35 +143,23 @@ export default {
         min: -100,
         max: 100,
       },
-      brightness: {
-        type: 'range',
-        value: 50,
-        min: 10,
-        max: 100,
-        step: 10,
-        nonRandomizable: true,
-      },
     },
   },
   checkerboard: {
     template: {
       'background-image': `linear-gradient(
         transparent 50%,
-        {colorOne} 50%
+        #9da8e150 50%
       ),
-      linear-gradient({angleOne}deg, {colorTwo} 50%, {colorThree} 50%)`,
+      linear-gradient({angleOne}deg, {colorOne} 50%, {colorTwo} 50%)`,
       'background-size': '{sizeX}rem {sizeY}rem',
     },
     variables: {
       colorOne: {
         type: 'color',
-        value: '#9da8e150',
-      },
-      colorTwo: {
-        type: 'color',
         value: '#324171',
       },
-      colorThree: {
+      colorTwo: {
         type: 'color',
         value: '#101423',
       },
@@ -273,3 +239,4 @@ export default {
     },
   },
 }
+export default templates

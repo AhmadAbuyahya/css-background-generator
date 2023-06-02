@@ -4,7 +4,6 @@ import templates from '~/lib/templates'
 defineOptions({
   name: 'IndexPage',
 })
-// const user = useUserStore()
 </script>
 
 <template>

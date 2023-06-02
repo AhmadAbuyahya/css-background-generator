@@ -8,9 +8,19 @@ interface Variable {
   min?: number
   max?: number
   step?: number
-  nonRandomizable?: boolean
 }
 
 export interface Variables {
   [key: string]: Variable
+}
+
+export interface Template {
+  template: {
+    [key: string]: string
+  }
+  variables: Variables
+}
+
+export interface Templates {
+  [key: string]: Template
 }
