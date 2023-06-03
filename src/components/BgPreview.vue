@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Variables } from 'src/types'
+import { useToastStore } from '~/stores/toast'
 
 const props = defineProps<{
   template: Record<string, string>
@@ -8,6 +9,8 @@ const props = defineProps<{
 
 const brightness = ref(75)
 const blur = ref(0)
+
+const { addToast } = useToastStore()
 
 const obj: { [x: string]: string | number } = {}
 
@@ -39,6 +42,8 @@ function reset() {
   Object.keys(props.variables).forEach((key) => {
     variablesRef.value[key] = props.variables[key].value
   })
+  brightness.value = 75
+  blur.value = 0
 }
 
 function randomizeNumberValues() {
@@ -67,31 +72,14 @@ const css = computed(() => {
 
 function copyStyle() {
   navigator.clipboard.writeText(css.value)
+  addToast({
+    variant: 'success',
+    title: 'Copied CSS to clipboard',
+    id: Date.now(),
+  })
 }
 
 const containerRef = ref<HTMLElement>()
-
-onMounted(() => {
-  containerRef.value?.addEventListener('mousedown', (e) => {
-    // captue five consecutive clicks
-    if (e.button === 0 && e.detail === 5) {
-      e.preventDefault()
-      e.stopPropagation()
-      partyTime()
-    }
-  })
-})
-
-function partyTime() {
-  const interval = setInterval(() => {
-    randomizeNumberValues()
-    randomizeColors()
-  }, 300)
-  setTimeout(() => {
-    clearInterval(interval)
-    reset()
-  }, 5000)
-}
 </script>
 
 <template>
