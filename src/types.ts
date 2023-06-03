@@ -24,3 +24,9 @@ export interface Template {
 export interface Templates {
   [key: string]: Template
 }
+
+export interface Toast {
+  id: number
+  title: string
+  variant: 'success' | 'error' | 'warning' | 'info'
+}
