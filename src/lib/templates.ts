@@ -1,75 +1,6 @@
 import type { Templates } from '~/types'
 
 const templates: Templates = {
-  zigzag: {
-    template: {
-      'background-color': '{bgColor}',
-      'background-image': `linear-gradient(
-          -45deg,
-          transparent 75%,
-          {colorOne} 75%
-        ),
-        linear-gradient(45deg, transparent 75%, {colorOne} 75%),
-        linear-gradient(-135deg, transparent 75%, {colorOne} 75%),
-        linear-gradient(135deg, transparent 75%, {colorOne} 75%)`,
-      'background-size': '{sizeX}rem {sizeY}rem',
-      'background-position': '{PosOne}rem 0, {PosOne}rem 0, 0 0, 0 0',
-    },
-    variables: {
-      bgColor: {
-        type: 'color',
-        value: '#101423',
-      },
-      colorOne: {
-        type: 'color',
-        value: '#9da8e1',
-      },
-      sizeX: {
-        type: 'range',
-        value: 10,
-        min: 3,
-        max: 20,
-      },
-      sizeY: {
-        type: 'range',
-        value: 10,
-        min: 3,
-        max: 20,
-      },
-      PosOne: {
-        type: 'range',
-        value: 2,
-        min: 0,
-        max: 20,
-      },
-    },
-  },
-  plusses: {
-    template: {
-      'background-color': '{bgColor}',
-      'background-image': `radial-gradient(circle, transparent {sizeOne}px, {bgColor} {sizeOne}px),
-        linear-gradient({colorOne} .5rem, transparent .5rem),
-        linear-gradient(90deg, {colorOne} 8px, transparent 8px)`,
-      'background-size': '5rem 5rem',
-      'background-position': '5.25rem 5.25rem, 2.5rem 2.5rem, 2.5rem 2.5rem',
-    },
-    variables: {
-      bgColor: {
-        type: 'color',
-        value: '#212223',
-      },
-      colorOne: {
-        type: 'color',
-        value: '#008080',
-      },
-      sizeOne: {
-        type: 'range',
-        value: 1 * 16,
-        min: 5,
-        max: 40,
-      },
-    },
-  },
   triangles: {
     template: {
       'background-color': '{bgColor}',
@@ -145,6 +76,49 @@ const templates: Templates = {
       },
     },
   },
+  zigzag: {
+    template: {
+      'background-color': '{bgColor}',
+      'background-image': `linear-gradient(
+          -45deg,
+          transparent 75%,
+          {colorOne} 75%
+        ),
+        linear-gradient(45deg, transparent 75%, {colorOne} 75%),
+        linear-gradient(-135deg, transparent 75%, {colorOne} 75%),
+        linear-gradient(135deg, transparent 75%, {colorOne} 75%)`,
+      'background-size': '{sizeX}rem {sizeY}rem',
+      'background-position': '{PosOne}rem 0, {PosOne}rem 0, 0 0, 0 0',
+    },
+    variables: {
+      bgColor: {
+        type: 'color',
+        value: '#101423',
+      },
+      colorOne: {
+        type: 'color',
+        value: '#9da8e1',
+      },
+      sizeX: {
+        type: 'range',
+        value: 10,
+        min: 3,
+        max: 20,
+      },
+      sizeY: {
+        type: 'range',
+        value: 10,
+        min: 3,
+        max: 20,
+      },
+      PosOne: {
+        type: 'range',
+        value: 2,
+        min: 0,
+        max: 20,
+      },
+    },
+  },
   checkerboard: {
     template: {
       'background-image': `linear-gradient(
@@ -180,6 +154,32 @@ const templates: Templates = {
         value: 4,
         min: 3,
         max: 20,
+      },
+    },
+  },
+  plusses: {
+    template: {
+      'background-color': '{bgColor}',
+      'background-image': `radial-gradient(circle, transparent {sizeOne}px, {bgColor} {sizeOne}px),
+        linear-gradient({colorOne} .5rem, transparent .5rem),
+        linear-gradient(90deg, {colorOne} 8px, transparent 8px)`,
+      'background-size': '5rem 5rem',
+      'background-position': '5.25rem 5.25rem, 2.5rem 2.5rem, 2.5rem 2.5rem',
+    },
+    variables: {
+      bgColor: {
+        type: 'color',
+        value: '#212223',
+      },
+      colorOne: {
+        type: 'color',
+        value: '#008080',
+      },
+      sizeOne: {
+        type: 'range',
+        value: 1 * 16,
+        min: 5,
+        max: 40,
       },
     },
   },
