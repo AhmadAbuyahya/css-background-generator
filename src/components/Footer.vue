@@ -1,10 +1,11 @@
 <script setup lang="ts">
-// const { t } = useI18n()
+const { t } = useI18n()
 </script>
 
 <template>
   <nav flex="~ gap-4" mt-6 justify-center text-xl>
-    <!-- <RouterLink icon-btn to="/" :title="t('button.home')">
+    hi
+    <RouterLink icon-btn to="/" :title="t('button.home')">
       <div i-carbon-campsite />
     </RouterLink>
 
@@ -14,6 +15,6 @@
 
     <RouterLink icon-btn to="/about" :title="t('button.about')">
       <div i-carbon-dicom-overlay />
-    </RouterLink> -->
+    </RouterLink>
   </nav>
 </template>

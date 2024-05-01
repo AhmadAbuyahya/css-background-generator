@@ -4,6 +4,6 @@
   >
     <!-- px-4 py-10 -->
     <RouterView />
-    <!-- <TheFooter /> -->
+    <Footer />
   </main>
 </template>

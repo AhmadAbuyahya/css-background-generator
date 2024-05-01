@@ -1,32 +1,34 @@
 <script setup lang="ts">
-import type { Variables } from 'src/types'
+import { storeToRefs } from 'pinia'
+import { useActiveTemplateStore } from '~/stores/activeTemplate'
 import { useToastStore } from '~/stores/toast'
+import templates from '~/lib/templates'
 
-const props = defineProps<{
-  template: Record<string, string>
-  variables: Variables
-}>()
-
-const brightness = ref(75)
-const blur = ref(0)
-
+const activeTemplateStore = useActiveTemplateStore()
 const { addToast } = useToastStore()
 
-const obj: { [x: string]: string | number } = {}
+const { activeTemplate } = storeToRefs(activeTemplateStore)
 
-Object.keys(props.variables).forEach((key) => {
-  obj[key] = props.variables[key].value
+const variables = computed(() => templates[activeTemplate.value].variables)
+const template = computed(() => templates[activeTemplate.value].template)
+function initVariablesRef() {
+  const obj: { [x: string]: string | number } = {}
+  Object.keys(variables.value).forEach((key) => {
+    obj[key] = variables.value[key].value
+  })
+  return obj
+}
+
+const variablesRef = ref<{ [x: string]: string | number }>(initVariablesRef())
+
+watch(activeTemplate, () => {
+  variablesRef.value = initVariablesRef()
 })
-
-const variablesRef = ref<{ [x: string]: string | number }>(obj)
 
 // make the template reactive
 const style = computed(() => {
-  const template = props.template
-  const style: { [x: string]: string } = {
-    filter: `brightness(${brightness.value}%) blur(${blur.value}px)`,
-  }
-  Object.entries(template).forEach(([key, value]) => {
+  const style: { [x: string]: string } = {}
+  Object.entries(template.value).forEach(([key, value]) => {
     const regex = /{(\w+)}/g
     const matches = value.matchAll(regex)
     let newValue = value
@@ -39,24 +41,22 @@ const style = computed(() => {
 })
 
 function reset() {
-  Object.keys(props.variables).forEach((key) => {
-    variablesRef.value[key] = props.variables[key].value
+  Object.keys(variables.value).forEach((key) => {
+    variablesRef.value[key] = variables.value[key].value
   })
-  brightness.value = 75
-  blur.value = 0
 }
 
 function randomizeNumberValues() {
-  Object.keys(props.variables).forEach((key) => {
-    if ((props.variables[key].type === 'range' || props.variables[key].type === 'number'))
-      variablesRef.value[key] = Math.floor(Math.random() * ((props.variables[key].max ?? 0) - (props.variables[key].min ?? 0)) + (props.variables[key].min ?? 0))
+  Object.keys(variables.value).forEach((key) => {
+    if ((variables.value[key].type === 'range' || variables.value[key].type === 'number'))
+      variablesRef.value[key] = Math.floor(Math.random() * ((variables.value[key].max ?? 0) - (variables.value[key].min ?? 0)) + (variables.value[key].min ?? 0))
   })
 }
 
 function randomizeColors() {
-  Object.keys(props.variables).forEach((key) => {
-    const value = props.variables[key].value
-    if (props.variables[key].type === 'color' && typeof value === 'string') {
+  Object.keys(variables.value).forEach((key) => {
+    const value = variables.value[key].value
+    if (variables.value[key].type === 'color' && typeof value === 'string') {
       const newValue = `#${Math.floor(Math.random() * 16777215).toString(16)}${value.slice(7)}`
       variablesRef.value[key] = newValue
     }
@@ -83,18 +83,16 @@ const containerRef = ref<HTMLElement>()
 </script>
 
 <template>
-  <div ref="containerRef" class="relative snap-start">
-    <div
-      :style="{
-        ...style,
-      }"
-      class="relative h-screen w-screen"
-    />
+  <div
+    ref="containerRef" :style="{
+      ...style,
+    }" class="relative h-screen w-full snap-start"
+  >
     <div
       class="absolute inset-0 m-auto h-fit max-w-[300px] flex flex-col transform gap-2 rounded bg-teal-700 p-3"
     >
       <button class="button" @click="randomizeNumberValues">
-        Randomize Pattern
+        Randomize Pattern {{ activeTemplate }}
       </button>
 
       <div class="flex gap-2">
@@ -107,7 +105,7 @@ const containerRef = ref<HTMLElement>()
       </div>
       <div
         v-for="
-          (value, key) in props.variables
+          (value, key) in variables
         "
         :key="key"
       >
@@ -119,24 +117,7 @@ const containerRef = ref<HTMLElement>()
           :step="value.step"
         >
       </div>
-      <div>
-        <input
-          v-model="brightness"
-          type="range"
-          :min="1"
-          :max="100"
-          :step="1"
-        >
-      </div>
-      <div>
-        <input
-          v-model="blur"
-          type="range"
-          :min="0"
-          :max="10"
-          :step="1"
-        >
-      </div>
+
       <button
         class="button"
         @click="copyStyle"
