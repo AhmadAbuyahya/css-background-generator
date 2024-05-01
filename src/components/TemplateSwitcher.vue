@@ -23,7 +23,7 @@ function getStyle(slug: string) {
 
 <template>
   <div class="h-screen flex flex-col justify-between bg-black bg-opacity-90 p-8">
-    <button v-for="(val, key) in templates" :key="key" class="border-1 rounded bg-red px-4 py-8 capitalize transition-all hover:scale-105" :style="getStyle(String(key))" @click="() => updateActiveTemplate(String(key))">
+    <button v-for="(_, key) in templates" :key="key" class="border-1 rounded bg-red px-4 py-8 capitalize transition-all hover:scale-105" :style="getStyle(String(key))" @click="() => updateActiveTemplate(String(key))">
       <div class="border-1 rounded bg-black p-1">
         {{ key }}
       </div>
