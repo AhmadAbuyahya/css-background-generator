@@ -22,11 +22,7 @@ function getStyle(slug: string) {
 </script>
 
 <template>
-  <div class="h-screen flex flex-col justify-between bg-black bg-opacity-90 p-8">
-    <button v-for="(_, key) in templates" :key="key" class="border-1 rounded bg-red px-4 py-8 capitalize transition-all hover:scale-105" :style="getStyle(String(key))" @click="() => updateActiveTemplate(String(key))">
-      <div class="border-1 rounded bg-black p-1">
-        {{ key }}
-      </div>
-    </button>
+  <div class="h-fit-content absolute bottom-0 left-0 z-10 w-full flex flex-row flex-nowrap justify-between gap-10 overflow-x-auto bg-black bg-opacity-90 p-3 md:bottom-unset md:top-0 md:h-screen md:w-auto md:flex-col md:p-8">
+    <button v-for="(_, key) in templates" :key="key" :title="String(key)" class="min-w-40 border-1 rounded bg-red px-4 py-8 capitalize transition-all hover:scale-105" :style="getStyle(String(key))" @click="() => updateActiveTemplate(String(key))" />
   </div>
 </template>

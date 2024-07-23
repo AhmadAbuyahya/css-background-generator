@@ -157,7 +157,7 @@ const templates: Templates = {
       },
     },
   },
-  plusses: {
+  plus: {
     template: {
       'background-color': '{bgColor}',
       'background-image': `radial-gradient(circle, transparent {sizeOne}px, {bgColor} {sizeOne}px),
@@ -236,6 +236,28 @@ const templates: Templates = {
         max: 20,
       },
 
+    },
+  },
+  brickWall: {
+    template: {
+      'background': 'conic-gradient(at 90% 40%,#0000 75%,{colorOne} 0),conic-gradient(at 90% 40%,#0000 75%,{colorOne} 0) {size}px {size}px {colorTwo}',
+      'background-size': 'calc(2*{size}px) calc(2*{size}px)',
+    },
+    variables: {
+      colorOne: {
+        value: '#6b698f',
+        type: 'color',
+      },
+      colorTwo: {
+        value: '#2b2a33',
+        type: 'color',
+      },
+      size: {
+        value: 50,
+        type: 'range',
+        min: 1,
+        max: 50,
+      },
     },
   },
 }

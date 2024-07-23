@@ -89,10 +89,10 @@ const containerRef = ref<HTMLElement>()
     }" class="relative h-screen w-full snap-start"
   >
     <div
-      class="absolute inset-0 m-auto h-fit max-w-[300px] flex flex-col transform gap-2 rounded bg-teal-700 p-3"
+      class="absolute inset-0 mx-auto mb-200px mt-20px h-fit max-w-250px flex flex-col transform gap-2 rounded bg-teal-700 p-3 md:m-auto md:mb-auto md:max-w-[300px]"
     >
       <button class="button" @click="randomizeNumberValues">
-        Randomize Pattern {{ activeTemplate }}
+        Randomize Pattern
       </button>
 
       <div class="flex gap-2">
@@ -103,19 +103,21 @@ const containerRef = ref<HTMLElement>()
           Reset
         </button>
       </div>
-      <div
-        v-for="
-          (value, key) in variables
-        "
-        :key="key"
-      >
-        <input
-          v-model="variablesRef[key]"
-          :type="value.type"
-          :min="value.min"
-          :max="value.max"
-          :step="value.step"
+      <div class="max-h-300px overflow-y-auto md:max-h-unset md:overflow-hidden">
+        <div
+          v-for="
+            (value, key) in variables
+          "
+          :key="key"
         >
+          <input
+            v-model="variablesRef[key]"
+            :type="value.type"
+            :min="value.min"
+            :max="value.max"
+            :step="value.step"
+          >
+        </div>
       </div>
 
       <button

@@ -5,7 +5,7 @@
 useHead({
   title: 'CSS Pattern Generator',
   meta: [
-    { name: 'description', content: 'Generate beautiful backgrounds using css only' },
+    { name: 'description', content: 'Generate random patterns using css only!' },
     {
       name: 'theme-color',
       content: () => isDark.value ? '#00aba9' : '#ffffff',
@@ -15,7 +15,7 @@ useHead({
     {
       rel: 'icon',
       type: 'image/svg+xml',
-      href: () => preferredDark.value ? '/favicon-dark.svg' : '/favicon.svg',
+      href: '/favicon.jpeg',
     },
   ],
 })
