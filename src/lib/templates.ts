@@ -1,6 +1,44 @@
 import type { Templates } from '~/types'
 
 const templates: Templates = {
+  checkerboard: {
+    template: {
+      'background-image': `linear-gradient(
+        transparent 50%,
+        #9da8e150 50%
+      ),
+      linear-gradient({angleOne}deg, {colorOne} 50%, {colorTwo} 50%)`,
+      'background-size': '{sizeX}rem {sizeY}rem',
+    },
+    variables: {
+      colorOne: {
+        type: 'color',
+        value: '#324171',
+      },
+      colorTwo: {
+        type: 'color',
+        value: '#101423',
+      },
+      angleOne: {
+        type: 'range',
+        value: 90,
+        min: 0,
+        max: 360,
+      },
+      sizeX: {
+        type: 'range',
+        value: 4,
+        min: 3,
+        max: 20,
+      },
+      sizeY: {
+        type: 'range',
+        value: 4,
+        min: 3,
+        max: 20,
+      },
+    },
+  },
   triangles: {
     template: {
       'background-color': '{bgColor}',
@@ -11,7 +49,7 @@ const templates: Templates = {
         ),
         conic-gradient(from {angleTwo}deg at 50% 30%, {colorTwo} {angleThree}deg, transparent {angleThree}deg)`,
       'background-size': '{sizeX}rem {sizeY}rem',
-      'background-position': '0 0, {posOne}px {posTwo}px',
+      'background-position': '0 0, {positionOne}px {positionTwo}px',
     },
     variables: {
       bgColor: {
@@ -62,13 +100,13 @@ const templates: Templates = {
         min: 3,
         max: 20,
       },
-      posOne: {
+      positionOne: {
         type: 'range',
         value: 1.5 * 16,
         min: -100,
         max: 100,
       },
-      posTwo: {
+      positionTwo: {
         type: 'range',
         value: -0.5 * 16,
         min: -100,
@@ -88,7 +126,7 @@ const templates: Templates = {
         linear-gradient(-135deg, transparent 75%, {colorOne} 75%),
         linear-gradient(135deg, transparent 75%, {colorOne} 75%)`,
       'background-size': '{sizeX}rem {sizeY}rem',
-      'background-position': '{PosOne}rem 0, {PosOne}rem 0, 0 0, 0 0',
+      'background-position': '{PositionOne}rem 0, {PositionOne}rem 0, 0 0, 0 0',
     },
     variables: {
       bgColor: {
@@ -111,48 +149,10 @@ const templates: Templates = {
         min: 3,
         max: 20,
       },
-      PosOne: {
+      PositionOne: {
         type: 'range',
         value: 2,
         min: 0,
-        max: 20,
-      },
-    },
-  },
-  checkerboard: {
-    template: {
-      'background-image': `linear-gradient(
-        transparent 50%,
-        #9da8e150 50%
-      ),
-      linear-gradient({angleOne}deg, {colorOne} 50%, {colorTwo} 50%)`,
-      'background-size': '{sizeX}rem {sizeY}rem',
-    },
-    variables: {
-      colorOne: {
-        type: 'color',
-        value: '#324171',
-      },
-      colorTwo: {
-        type: 'color',
-        value: '#101423',
-      },
-      angleOne: {
-        type: 'range',
-        value: 90,
-        min: 0,
-        max: 360,
-      },
-      sizeX: {
-        type: 'range',
-        value: 4,
-        min: 3,
-        max: 20,
-      },
-      sizeY: {
-        type: 'range',
-        value: 4,
-        min: 3,
         max: 20,
       },
     },
@@ -200,7 +200,7 @@ const templates: Templates = {
       {colorThree} 1.5rem,
       transparent 1.5rem
     ),
-    linear-gradient({degOne}deg, {colorOne}, {colorTwo})`,
+    linear-gradient({angleOne}deg, {colorOne}, {colorTwo})`,
       'background-size': '{sizeOne}rem {sizeTwo}rem, {sizeOne}rem {sizeTwo}rem, 100% 100%',
       'background-position': '0 0, 0 2.5rem',
     },
@@ -217,7 +217,7 @@ const templates: Templates = {
         value: '#ffffff',
         type: 'color',
       },
-      degOne: {
+      angleOne: {
         value: -45,
         type: 'range',
         min: 0,
@@ -240,8 +240,8 @@ const templates: Templates = {
   },
   brickWall: {
     template: {
-      'background': 'conic-gradient(at 90% 40%,#0000 75%,{colorOne} 0),conic-gradient(at 90% 40%,#0000 75%,{colorOne} 0) {size}px {size}px {colorTwo}',
-      'background-size': 'calc(2*{size}px) calc(2*{size}px)',
+      'background': 'conic-gradient(at {width}% {height}%,#0000 75%,{colorOne} 0),conic-gradient(at {width}% {height}%,#0000 75%,{colorOne} 0) {scale}px {scale}px {colorTwo}',
+      'background-size': 'calc(2*{scale}px) calc(2*{scale}px)',
     },
     variables: {
       colorOne: {
@@ -252,11 +252,23 @@ const templates: Templates = {
         value: '#2b2a33',
         type: 'color',
       },
-      size: {
+      scale: {
         value: 50,
         type: 'range',
         min: 1,
         max: 50,
+      },
+      width: {
+        value: 90,
+        type: 'range',
+        min: 1,
+        max: 100,
+      },
+      height: {
+        value: 40,
+        type: 'range',
+        min: 1,
+        max: 100,
       },
     },
   },

@@ -5,10 +5,11 @@ defineOptions({
 </script>
 
 <template>
-  <div class="main-container grid h-screen">
-    <TemplateSwitcher />
+  <div class="max-h-screen flex flex-row snap-y snap-mandatory overflow-y-hidden bg-teal-700">
+    <div>
+      <TemplateSwitcher />
+    </div>
     <BgPreview />
-    <Controls />
   </div>
   <Toasts />
 </template>
@@ -17,9 +18,3 @@ defineOptions({
 meta:
   layout: home
 </route>
-
-<style>
-.main-container {
-  grid-template-columns: 12rem minmax(0, 1fr) 20rem
-}
-</style>

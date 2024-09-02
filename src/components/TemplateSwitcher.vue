@@ -2,7 +2,7 @@
 import templates from '~/lib/templates'
 import { useActiveTemplateStore } from '~/stores/activeTemplate'
 
-const { updateActiveTemplate } = useActiveTemplateStore()
+const activeTemplateStore = useActiveTemplateStore()
 
 function getStyle(slug: string) {
   const style: { [x: string]: string } = {}
@@ -22,7 +22,31 @@ function getStyle(slug: string) {
 </script>
 
 <template>
-  <div class="h-fit-content absolute bottom-0 left-0 z-10 w-full flex flex-row flex-nowrap justify-between gap-10 overflow-x-auto bg-black bg-opacity-90 p-3 md:bottom-unset md:top-0 md:h-screen md:w-auto md:flex-col md:p-8">
-    <button v-for="(_, key) in templates" :key="key" :title="String(key)" class="min-w-40 border-1 rounded bg-red px-4 py-8 capitalize transition-all hover:scale-105" :style="getStyle(String(key))" @click="() => updateActiveTemplate(String(key))" />
+  <div class="relative z-10 h-screen overflow-hidden border-r-1">
+    <div class="logo z-1 flex items-center gap-4 border-b-1 bg-#242424 p-4">
+      <Logo />
+    </div>
+    <div
+      class="h-[calc(100vh-90px)] flex flex-col justify-between gap-10 overflow-y-scroll bg-[#171717] p-4"
+    >
+      <button
+        v-for="(_, key) in templates" :key="key" :title="String(key)"
+        class="relative min-h-110px w-auto inline-flex select-none items-center justify-center rounded-lg bg-transparent px-4 py-2 align-middle text-lg font-semibold capitalize text-white outline-1 outline transition-all duration-250 hover:outline-4"
+        :style="getStyle(String(key))" :class="{
+          'outline-6 outline-blue': activeTemplateStore.activeTemplate === key,
+        }"
+
+        @click="() => activeTemplateStore.updateActiveTemplate(String(key))"
+      >
+        <span
+          class="absolute bottom-0 left-0 right-0 top-0 z-0 flex items-center justify-center rounded-lg bg-[#171717] bg-opacity-60 transition-all duration-250 hover:bg-opacity-80"
+        >
+          {{ key }}
+        </span>
+      </button>
+    </div>
   </div>
 </template>
+
+<style>
+</style>

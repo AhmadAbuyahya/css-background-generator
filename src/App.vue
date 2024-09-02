@@ -3,9 +3,9 @@
 // you can use this to manipulate the document head in any components,
 // they will be rendered correctly in the html results with vite-ssg
 useHead({
-  title: 'CSS Pattern Generator',
+  title: 'Stylixir - CSS Pattern Generator',
   meta: [
-    { name: 'description', content: 'Generate random patterns using css only!' },
+    { name: 'description', content: 'Generate random patterns that are uniquely yours, using nothing but css!' },
     {
       name: 'theme-color',
       content: () => isDark.value ? '#00aba9' : '#ffffff',
@@ -15,7 +15,7 @@ useHead({
     {
       rel: 'icon',
       type: 'image/svg+xml',
-      href: '/favicon.jpeg',
+      href: '/favicon.svg',
     },
   ],
 })
