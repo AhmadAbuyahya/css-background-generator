@@ -23,11 +23,17 @@ export default defineConfig({
     }),
     presetTypography(),
     presetWebFonts({
+      provider: 'google',
       fonts: {
         sans: 'DM Sans',
         serif: 'DM Serif Display',
         mono: 'DM Mono',
-        federo: 'Federo',
+        federo: [
+          {
+            name: 'Federo',
+            weights: ['400', '500', '700'],
+          },
+        ],
       },
     }),
   ],
