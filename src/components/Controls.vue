@@ -8,7 +8,7 @@ const { variables, variablesRef } = storeToRefs(activeTemplateStore)
 </script>
 
 <template>
-  <div class="h-100dvh h-full flex flex-col transform justify-center gap-2 overflow-y-scroll border-l-1 rounded bg-[#171717] p-6">
+  <div class="h-full flex flex-col transform justify-center gap-2 overflow-y-scroll border-t-1 rounded bg-[#171717] p-6 md:h-100dvh md:border-l-1 md:border-t-0">
     <div class="mb-10 flex flex-col gap-2">
       <button class="button" @click="activeTemplateStore.randomizeNumberValues">
         <div class="i-carbon-tornado" />
@@ -30,7 +30,7 @@ const { variables, variablesRef } = storeToRefs(activeTemplateStore)
         Reset
       </button>
     </div>
-    <div class="max-h-300px overflow-y-auto md:max-h-unset">
+    <div class="overflow-y-auto md:max-h-300px md:max-h-unset">
       <div v-for="(value, key) in variables" :key="key" class="mb-4">
         <label class="block w-full text-left" :for="String(key)">
           {{ startCase(String(key)) }}

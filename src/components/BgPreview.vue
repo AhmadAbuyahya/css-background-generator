@@ -18,10 +18,9 @@ function copyStyle() {
 </script>
 
 <template>
-  <div class="relative">
+  <div class="relative h-50vh md:h-unset">
     <div
-      h-screen
-      overflow-hidden
+      class="overflow-hidden md:h-screen"
       :style="{
         ...activeTemplateStore.style,
         filter: 'blur(5px) brightness(0.5)',
@@ -30,7 +29,7 @@ function copyStyle() {
       }"
     />
     <div
-      class="absolute inset-8% my-auto h-auto flex items-center justify-center border-1 rounded-lg bg-[#171717] bg-opacity-90 p-4"
+      class="absolute inset-15px my-auto h-auto flex items-center justify-center border-1 rounded-lg bg-[#171717] bg-opacity-90 p-4 md:inset-8%"
       :style="{
         ...activeTemplateStore.style,
       }"

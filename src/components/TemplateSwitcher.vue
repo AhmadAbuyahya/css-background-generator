@@ -22,16 +22,16 @@ function getStyle(slug: string) {
 </script>
 
 <template>
-  <div class="relative z-10 h-screen overflow-hidden border-r-1">
+  <div class="relative z-10 overflow-hidden border-b-1 md:h-screen md:border-b-0 md:border-r-1">
     <div class="logo z-1 flex items-center gap-4 border-b-1 bg-#242424 p-4">
       <Logo />
     </div>
     <div
-      class="h-[calc(100vh-90px)] flex flex-col justify-between gap-10 overflow-y-scroll bg-[#171717] p-4"
+      class="h-[fit-content] flex justify-between gap-10 overflow-y-scroll bg-[#171717] p-4 md:h-[calc(100vh-90px)] md:flex-col"
     >
       <button
         v-for="(_, key) in templates" :key="key" :title="String(key)"
-        class="relative min-h-110px w-auto inline-flex select-none items-center justify-center rounded-lg bg-transparent px-4 py-2 align-middle text-lg font-semibold capitalize text-white outline-1 outline transition-all duration-250 hover:outline-4"
+        class="relative min-h-100px min-w-150px inline-flex select-none items-center justify-center rounded-lg bg-transparent px-4 py-2 align-middle text-lg font-semibold capitalize text-white outline-1 outline transition-all duration-250 md:min-h-110px md:w-auto hover:outline-4"
         :style="getStyle(String(key))" :class="{
           'outline-6 outline-blue': activeTemplateStore.activeTemplate === key,
         }"

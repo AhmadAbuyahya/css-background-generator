@@ -5,7 +5,7 @@ defineOptions({
 </script>
 
 <template>
-  <div class="main-container grid h-screen">
+  <div class="main-container min-h-screen md:grid md:h-screen">
     <TemplateSwitcher />
     <BgPreview />
     <Controls />
@@ -20,6 +20,13 @@ meta:
 
 <style>
 .main-container {
-  grid-template-columns: 12rem minmax(0, 1fr) 20rem
+  grid-template-columns: 12rem minmax(0, 1fr) 20rem;
+}
+
+@media (max-width: 768px) {
+  .main-container {
+    display: flex;
+    flex-direction: column;
+  }
 }
 </style>
