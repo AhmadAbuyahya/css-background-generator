@@ -811,6 +811,34 @@ const templates: Templates = {
       },
     },
   },
-
+  circles: {
+    template: {
+      'background-image': `
+        repeating-radial-gradient(circle at 50% 50%, {colorOne} 0%, {colorOne} 10%, {colorTwo} 10%, {colorTwo} 20%)`,
+      'background-size': '{sizeX}px {sizeY}px',
+    },
+    variables: {
+      colorOne: {
+        type: 'color',
+        value: '#8e44ad',
+      },
+      colorTwo: {
+        type: 'color',
+        value: '#9b59b6',
+      },
+      sizeX: {
+        type: 'range',
+        value: 40,
+        min: 20,
+        max: 200,
+      },
+      sizeY: {
+        type: 'range',
+        value: 40,
+        min: 20,
+        max: 200,
+      },
+    },
+  },
 }
 export default templates
