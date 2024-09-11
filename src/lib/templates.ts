@@ -732,6 +732,85 @@ const templates: Templates = {
       },
     },
   },
+  grid: {
+    template: {
+      'background-color': '{bgColor}',
+      'background-image': `
+        linear-gradient({colorOne} {thickness}px, transparent {thickness}px),
+        linear-gradient(90deg, {colorTwo} {thickness}px, transparent {thickness}px)`,
+      'background-size': '{spacingX}px {spacingY}px',
+    },
+    variables: {
+      bgColor: {
+        type: 'color',
+        value: '#ffffff',
+      },
+      colorOne: {
+        type: 'color',
+        value: '#000000',
+      },
+      colorTwo: {
+        type: 'color',
+        value: '#000000',
+      },
+      spacingX: {
+        type: 'range',
+        value: 20,
+        min: 10,
+        max: 100,
+      },
+      spacingY: {
+        type: 'range',
+        value: 20,
+        min: 10,
+        max: 100,
+      },
+      thickness: {
+        type: 'range',
+        value: 1,
+        min: 1,
+        max: 10,
+      },
+    },
+  },
+  checkerboard: {
+    template: {
+      'background-color': '{bgColor}',
+      'background-image': `
+        linear-gradient(45deg, {colorOne} 25%, transparent 25%, transparent 75%, {colorOne} 75%, {colorOne}),
+        linear-gradient(45deg, {colorOne} 25%, transparent 25%, transparent 75%, {colorOne} 75%, {colorOne})`,
+      'background-position': '0 0, {spacingX}px {spacingY}px',
+      'background-size': '{size}px {size}px',
+    },
+    variables: {
+      bgColor: {
+        type: 'color',
+        value: '#ffffff',
+      },
+      colorOne: {
+        type: 'color',
+        value: '#000000',
+      },
+      size: {
+        type: 'range',
+        value: 100,
+        min: 20,
+        max: 200,
+      },
+      spacingX: {
+        type: 'range',
+        value: 50,
+        min: 20,
+        max: 100,
+      },
+      spacingY: {
+        type: 'range',
+        value: 50,
+        min: 20,
+        max: 100,
+      },
+    },
+  },
 
 }
 export default templates
