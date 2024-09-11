@@ -8,7 +8,7 @@ const { variables, variablesRef } = storeToRefs(activeTemplateStore)
 </script>
 
 <template>
-  <div class="h-full flex flex-col transform justify-center gap-2 overflow-y-scroll border-t-1 rounded bg-[#171717] p-6 md:h-100dvh md:border-l-1 md:border-t-0">
+  <div class="h-full flex flex-col transform justify-center gap-2 overflow-y-scroll border-t-1 bg-[#171717] p-6 md:h-100dvh md:border-l-1 md:border-t-0">
     <div class="mb-10 flex flex-col gap-2">
       <button class="button" @click="activeTemplateStore.randomizeNumberValues">
         <div class="i-carbon-tornado" />

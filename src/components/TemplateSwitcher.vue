@@ -11,7 +11,7 @@ function getStyle(slug: string) {
     const matches = value.matchAll(regex)
     let newValue = value
     for (const match of matches) {
-      const finalValue = match[0].toLowerCase().includes('size') ? parseInt(String(templates[slug].variables[match[1]].value)) / 2 : templates[slug].variables[match[1]].value
+      const finalValue = match[0].toLowerCase().includes('size') ? parseInt(String(templates[slug].variables[match[1]].value)) : templates[slug].variables[match[1]].value
       newValue = newValue.replace(match[0], finalValue as string)
     }
 

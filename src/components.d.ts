@@ -14,6 +14,7 @@ declare module '@vue/runtime-core' {
     Controls: typeof import('./components/Controls.vue')['default']
     Footer: typeof import('./components/Footer.vue')['default']
     Logo: typeof import('./components/Logo.vue')['default']
+    RandomPreview: typeof import('./components/RandomPreview.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     TemplateSwitcher: typeof import('./components/TemplateSwitcher.vue')['default']
