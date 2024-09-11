@@ -8,7 +8,9 @@ const { variables, variablesRef } = storeToRefs(activeTemplateStore)
 </script>
 
 <template>
-  <div class="h-full flex flex-col transform justify-center gap-2 overflow-y-scroll border-t-1 bg-[#171717] p-6 md:h-100dvh md:border-l-1 md:border-t-0">
+  <div
+    class="h-full flex flex-col transform justify-center gap-2 overflow-y-scroll border-t-1 bg-[#171717] p-6 md:h-100dvh md:border-l-1 md:border-t-0"
+  >
     <div class="mb-10 flex flex-col gap-2">
       <button class="button" @click="activeTemplateStore.randomizeNumberValues">
         <div class="i-carbon-tornado" />
@@ -40,6 +42,18 @@ const { variables, variablesRef } = storeToRefs(activeTemplateStore)
           :step="value.step"
         >
       </div>
+    </div>
+
+    <div class="flex">
+      <a
+        href="https://www.producthunt.com/posts/stylixir?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-stylixir"
+        target="_blank"
+        class="m-auto"
+      ><img
+        src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=488516&theme=dark"
+        alt="Stylixir - CSS&#0032;Pattern&#0032;Generator | Product Hunt" style="width: 250px; height: 54px;"
+        width="250" height="54"
+      ></a>
     </div>
   </div>
 </template>
