@@ -840,5 +840,92 @@ const templates: Templates = {
       },
     },
   },
+  honeyComb: {
+    template: {
+      '--s': '{scale}px', /* control the size */
+      '--c1': '{colorOne}', /* First color */
+      '--c2': '{colorTwo}', /* Second color */
+
+      '--c': '#0000,var(--c1) .5deg 119.5deg,#0000 120deg',
+      '--g1': 'conic-gradient(from  60deg at 56.25% calc(425%/6),var(--c))',
+      '--g2': 'conic-gradient(from 180deg at 43.75% calc(425%/6),var(--c))',
+      '--g3': 'conic-gradient(from -60deg at 50%   calc(175%/12),var(--c))',
+      'background': `
+        var(--g1), var(--g1) var(--s) calc({positionY} * var(--s)),
+        var(--g2), var(--g2) var(--s) calc({positionY} * var(--s)),
+        var(--g3) var(--s) 0, var(--g3) 0 calc({positionY} * var(--s)),
+        var(--c2)
+      `,
+      'background-size': 'calc(2 * var(--s)) calc(3.46 * var(--s))',
+    },
+    variables: {
+      colorOne: {
+        type: 'color',
+        value: '#2fb8ac',
+      },
+      colorTwo: {
+        type: 'color',
+        value: '#ecbe13',
+      },
+      scale: {
+        type: 'range',
+        value: 61,
+        min: 20,
+        max: 150,
+      },
+      positionY: {
+        type: 'range',
+        value: '1.73',
+        min: 0,
+        max: 4,
+        step: 0.1,
+      },
+    },
+  },
+  // interlockingArches: {
+  //   template: {
+  //     'background-color': '{bgColor}',
+  //     'background-image': `
+  //       radial-gradient(55.59px at calc(100% + 27.3px) 50%, transparent calc(99% - 11px), {colorOne} calc(101% - 11px) 99%, transparent 101%),
+  //       radial-gradient(55.59px at -27.3px 50%, transparent calc(99% - 11px), {colorOne} calc(101% - 11px) 99%, transparent 101%)
+  //     `,
+  //     'background-size': '53px 168px',
+  //     'background-position': 'calc(50% - 26.5px + .5px) calc(50% - 84px), calc(50% + 26.5px) 50%',
+  //   },
+  //   variables: {
+  //     bgColor: {
+  //       type: 'color',
+  //       value: '#ffffff',
+  //     },
+  //     colorOne: {
+  //       type: 'color',
+  //       value: '#e0e0e0',
+  //     },
+  //     archSize: {
+  //       type: 'range',
+  //       value: 55.59,
+  //       min: 20,
+  //       max: 100,
+  //     },
+  //     archOffset: {
+  //       type: 'range',
+  //       value: 27.3,
+  //       min: 10,
+  //       max: 50,
+  //     },
+  //     patternWidth: {
+  //       type: 'range',
+  //       value: 53,
+  //       min: 30,
+  //       max: 100,
+  //     },
+  //     patternHeight: {
+  //       type: 'range',
+  //       value: 168,
+  //       min: 100,
+  //       max: 300,
+  //     },
+  //   },
+  // },
 }
 export default templates

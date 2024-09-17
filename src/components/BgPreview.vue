@@ -29,13 +29,13 @@ function copyStyle() {
       }"
     />
     <div
-      class="absolute inset-15px my-auto h-auto flex items-center justify-center border-1 rounded-lg bg-[#171717] bg-opacity-90 p-4 md:inset-8%"
+      class="absolute inset-15px my-auto h-auto flex items-center justify-center gap-4 border-1 rounded-lg bg-[#171717] bg-opacity-90 p-4 md:inset-8%"
       :style="{
         ...activeTemplateStore.style,
       }"
     >
       <button
-        class="flex gap-4 border-2 rounded bg-[#343434] p-2 text-white transition-colors duration-200 ease-in-out"
+        class="button"
         @click="copyStyle"
       >
         <div class="i-carbon-copy" />
